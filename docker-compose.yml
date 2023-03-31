@@ -10,8 +10,8 @@ services:
       - ./mysql:/var/lib/mysql
   myapp:
     image: docker.io/bitnami/laravel:10
-    # ports:
-    #   - '8000:8000'
+    ports:
+      - '8000:8000'
     environment:
       - DB_HOST=mysql
       - DB_PORT=3306
