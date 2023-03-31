@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:8.0.32
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=coppel
+    volumes:
+      - ./mysql:/var/lib/mysql
+  myapp:
+    image: docker.io/bitnami/laravel:10
+    # ports:
+    #   - '8000:8000'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=coppel
+    volumes:
+      - ./:/app
+    command: sleep infinity
+    depends_on:
+      - mysql
